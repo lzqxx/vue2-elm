@@ -7,7 +7,7 @@
                     <svg class="location_icon">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#location"></use>
                     </svg>
-                    <div class="add_address" v-if="!choosedAddress">请添加一个收获地址</div>
+                    <div class="add_address" v-if="!choosedAddress">请添加一个收货地址</div>
                     <div v-else class="address_detail_container">
                         <header>
                             <span>{{choosedAddress.name}}</span>
@@ -65,6 +65,13 @@
                     <div class="num_price">
                         <span></span>
                         <span>¥ {{checkoutData.cart.extra[0].price}}</span>
+                    </div>
+                </div>
+                <div class="food_item_style">
+                    <p class="food_name ellipsis">配送费</p>
+                    <div class="num_price">
+                        <span></span>
+                        <span>¥ {{checkoutData.cart.deliver_amount || 0}}</span>
                     </div>
                 </div>
                 <div class="food_item_style total_price">
@@ -129,7 +136,7 @@
     import alertTip from 'src/components/common/alertTip'
     import loading from 'src/components/common/loading'
     import {checkout, getAddress, placeOrders, getAddressList} from 'src/service/getData'
-    import {localapi, proapi, imgBaseUrl} from 'src/config/env'
+    import {imgBaseUrl} from 'src/config/env'
 
     export default {
         data(){
@@ -160,6 +167,10 @@
             if (this.geohash) {
                 this.initData();
                 this.SAVE_GEOHASH(this.geohash);
+            }
+            if (!(this.userInfo && this.userInfo.user_id)) {
+                // this.showAlert = true;
+                // this.alertText = '您还没有登录';
             }
         },
         components: {
@@ -221,12 +232,7 @@
             //获取地址信息，第一个地址为默认选择地址
             async initAddress(){
                 if (this.userInfo && this.userInfo.user_id) {
-                    let addressRes
-                    if (localapi || proapi) {
-                        addressRes = await getAddressList(this.userInfo.user_id);
-                    }else{
-                        addressRes = await getAddress(this.checkoutData.cart.id, this.checkoutData.sig);
-                    }
+                    const addressRes = await getAddressList(this.userInfo.user_id);
                     if (addressRes instanceof Array && addressRes.length) {
                         this.CHOOSE_ADDRESS({address: addressRes[0], index: 0});
                     }
@@ -260,7 +266,7 @@
                     //未选择地址则提示
                 }else if(!this.choosedAddress){
                     this.showAlert = true;
-                    this.alertText = '请添加一个收获地址';
+                    this.alertText = '请添加一个收货地址';
                     return
                 }
                 //保存订单

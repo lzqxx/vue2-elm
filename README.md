@@ -1,5 +1,7 @@
 # 前言
 
+[README in English](README-en.md)
+
 初学vue时曾在网上搜索vue的实战项目源码，无奈大部分都是简单的demo，对于深究vue没有太大的帮助，剩下的一些大部分都是像音乐播放器之类的展示型项目，交互没有预期那么复杂。但我们实际在工作中，经常会遇到有购物车的项目，这类项目因为涉及到money，所以对逻辑严谨度要求高，页面之间交互复杂，又会伴随着登录、注册、用户信息等等，常常会让我们很头疼。既然还没人用vue写过这样的项目，那不如我来写，开源出来对能看到的人也会有帮助。
 
 这种功能性的项目很实用但是往往也很枯燥，没有音乐播放器那么看起来绚丽，思来想去发现饿了么是一个不错的素材，一来它足够复杂，开放的外卖平台比一般的公司独有商店更加复杂。二来 见到那么多美食，大家也不会感觉到厌烦。
@@ -22,18 +24,29 @@ vue2 + vuex + vue-router + webpack + ES6/7 + fetch + sass + flex + svg
 
 ## 项目运行
 
-#### 注意：由于涉及大量的 ES6/7 等新属性，nodejs 必须是 6.0 以上版本 ，node 7 是先行版，有可能会出问题，建议使用 node 6 稳定版
+#### 注意：由于涉及大量的 ES6/7 等新属性，node 需要 6.0 以上版本
 
 ```
 git clone https://github.com/bailicangdu/vue2-elm.git  
 
 cd vue2-elm
 
-npm install
+npm install 或 yarn(推荐)
 
 npm run dev
 
 ```
+## 关于接口数据
+
+此项目的所有接口数据都来源于配套的后台系统，[后台项目传送地址](https://github.com/bailicangdu/node-elm)。
+
+如果想体验前后台同时开发，可以下载后台系统。
+
+此时启动本项目的命令为：npm run local 而不是 npm run dev。
+
+同时我们也提供了基于`element-ui`搭建的[后台管理页面](https://github.com/bailicangdu/vue2-manage)
+
+如果只做前端开发，请忽略上面这几句话哟～
 
 
 # 说明
@@ -44,32 +57,24 @@ npm run dev
 
 >  开发环境 macOS 10.12.3  Chrome 56  nodejs 6.10.0
 
->  特别感谢辰妹子，在百忙之中抽出时间和我一起完成了这个项目，辛苦了🌹
+>  特别感谢辰妹子[@bailichen](https://github.com/bailichen), [@iceRao](https://github.com/raoenhui)，在百忙之中抽出时间和我一起完成了这个项目，辛苦了🌹
 
 >  如有问题请直接在 Issues 中提，或者您发现问题并有非常好的解决方案，欢迎 PR 👍
+
+>  [项目交流群](https://gitter.im/vue2-elm/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
 
 >  推荐一个 react + redux 开源项目，对react感兴趣的朋友赶紧去看看。[地址在这里](https://github.com/bailicangdu/react-pxq)
 
 >  另外一个 vue2 + vuex 的入门项目，比当前的项目简单很多，非常适合入门练习。[地址在这里](https://github.com/bailicangdu/vue2-happyfri)
 
 
+# 效果演示
 
-# 关于 数据 的说明🤔
-
-下载代码运行后，因为开启了反向代理，可以获取真实的官方数据，最终可以进行下单(真实的下单，而不是模拟，下单后可以在官方App中查看并付款，亲自试过，且成功付款点餐)，但是为了安全起见，登录的帐号为固定的帐号，以免泄露个人信息，不过照样可以点餐。
-
-
-## 效果演示
-
-#### (demo使用的是模拟数据，数据是固定的，只做为样式的演示，要获取真实的数据，请clone代码并运行);
-
-[查看demo请戳这里](http://test.fe.ptdev.cn/elm/)（请用chrome手机模式预览）
+[查看demo请戳这里](http://cangdu.org/elm/)（请用chrome手机模式预览）
 
 ### 移动端扫描下方二维码
 
-![](https://github.com/bailicangdu/vue2-elm/blob/master/screenshots/elm_ewm.png)
-
-
+<img src="https://github.com/bailicangdu/vue2-elm/blob/master/screenshots/ewm.png" width="250" height="250"/>
 
 
 
@@ -121,9 +126,9 @@ npm run dev
 
 1、用node.js构建一个模拟外卖平台的后台系统。[地址在这里](https://github.com/bailicangdu/node-elm)
 
-2、利用 react-native 写出跨 Android 和 IOS 的原生APP版本。[地址在这里](https://github.com/bailicangdu/React-Native-elm)
+2、写出跨 Android 和 IOS 的原生APP版本。[地址在这里](https://github.com/bailicangdu/native-xdm)
 
-3、如果时间来的及，会出一个pc端的网页版。
+3、如果时间来的及，会出一卖家版本。
 
 所以我的目的是构建一个横跨前后端，移动IOS、Android的完整生态圈。
 
@@ -215,7 +220,7 @@ npm run dev
 │   │   │       ├── exchange.vue                // 兑换红包
 │   │   │       ├── hbDescription.vue           // 红包说明
 │   │   │       └── hbHistory.vue               // 历史红包
-│   │   ├── city                 
+│   │   ├── city
 │   │   │   └── city.vue                        // 当前城市页
 │   │   ├── confirmOrder
 │   │   │   ├── children
@@ -226,7 +231,7 @@ npm run dev
 │   │   │   │   ├── chooseAddress.vue           // 选择地址页
 │   │   │   │   ├── invoice.vue                 // 选择发票页
 │   │   │   │   ├── payment.vue                 // 付款页
-│   │   │   │   ├── remark.vue                  // 订单备注页 
+│   │   │   │   ├── remark.vue                  // 订单备注页
 │   │   │   │   └── userValidation.vue          // 用户验证页
 │   │   │   └── confirmOrder.vue                // 确认订单页
 │   │   ├── download
@@ -254,7 +259,7 @@ npm run dev
 │   │   ├── profile
 │   │   │   ├── children
 │   │   │   │   ├── children
-│   │   │   │   │   ├── address.vue             // 添加地址
+│   │   │   │   │   ├── address.vue             // 地址
 │   │   │   │   │   └── children
 │   │   │   │   │       ├── add.vue             // 新增地址
 │   │   │   │   │       └── children
@@ -307,7 +312,6 @@ npm run dev
 56 directories, 203 files
 ```
 
+# License
 
-### License
-
-[MIT](https://github.com/bailicangdu/vue2-elm/blob/master/LICENSE)
+[GPL](https://github.com/bailicangdu/vue2-elm/blob/master/COPYING)
